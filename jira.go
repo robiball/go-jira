@@ -66,6 +66,7 @@ func NewClient(httpClient *http.Client, baseURL string) (*Client, error) {
 	}
 	c.Authentication = &AuthenticationService{client: c}
 	c.Issue = &IssueService{client: c}
+	c.Priority = &PriorityService{client: c}
 	c.Project = &ProjectService{client: c}
 	c.Board = &BoardService{client: c}
 	c.Sprint = &SprintService{client: c}
