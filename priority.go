@@ -31,11 +31,33 @@ type PriorityScheme struct {
 	ProjectKeys     []string  `json:"projectKeys" structs:"projectKeys,omitempty"`
 }
 
-// Get returns a full representation of a priority scheme
+// Get returns a full representation of a priority
+// JIRA will attempt to identify the priority by the priorityID parameter.
+//
+// JIRA API docs: https://docs.atlassian.com/software/jira/docs/api/REST/7.7.0/#api/2/priority
+func (s *PriorityService) Get(priorityID string) (*Priority, *Response, error) {
+	apiEndpoint := fmt.Sprintf("/rest/api/2/priority/%s", priorityID)
+	req, err := s.client.NewRequest("GET", apiEndpoint, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	p := new(Priority)
+	resp, err := s.client.Do(req, p)
+	if err != nil {
+		jerr := NewJiraError(resp, err)
+		return nil, resp, jerr
+	}
+
+	return p, resp, nil
+}
+
+
+// GetPriorityScheme returns a full representation of a priority scheme
 // JIRA will attempt to identify the scheme by the prioritySchemeID parameter.
 //
 // JIRA API docs: https://docs.atlassian.com/software/jira/docs/api/REST/7.7.0/#api/2/priorityschemes
-func (s *PriorityService) Get(prioritySchemeID string) (*PriorityScheme, *Response, error) {
+func (s *PriorityService) GetScheme(prioritySchemeID string) (*PriorityScheme, *Response, error) {
 	apiEndpoint := fmt.Sprintf("/rest/api/2/priorityschemes/%s", prioritySchemeID)
 	req, err := s.client.NewRequest("GET", apiEndpoint, nil)
 	if err != nil {
