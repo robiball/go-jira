@@ -31,11 +31,11 @@ type PriorityScheme struct {
 	ProjectKeys     []string  `json:"projectKeys" structs:"projectKeys,omitempty"`
 }
 
-// GetPriorityScheme returns a full representation of a priority scheme
+// Get returns a full representation of a priority scheme
 // JIRA will attempt to identify the scheme by the prioritySchemeID parameter.
 //
 // JIRA API docs: https://docs.atlassian.com/software/jira/docs/api/REST/7.7.0/#api/2/priorityschemes
-func (s *PriorityService) GetPriorityScheme(prioritySchemeID string) (*PriorityScheme, *Response, error) {
+func (s *PriorityService) Get(prioritySchemeID string) (*PriorityScheme, *Response, error) {
 	apiEndpoint := fmt.Sprintf("/rest/api/2/priorityschemes/%s", prioritySchemeID)
 	req, err := s.client.NewRequest("GET", apiEndpoint, nil)
 	if err != nil {
