@@ -29,6 +29,7 @@ type Client struct {
 	// Services used for talking to different parts of the JIRA API.
 	Authentication *AuthenticationService
 	Issue          *IssueService
+	Priority       *PriorityService
 	Project        *ProjectService
 	Board          *BoardService
 	Sprint         *SprintService
