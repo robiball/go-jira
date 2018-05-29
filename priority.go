@@ -12,10 +12,12 @@ type PriorityService struct {
 // Priority represents a priority of a JIRA issue.
 // Typical types are "Normal", "Moderate", "Urgent", ...
 type Priority struct {
-	Self    string `json:"self,omitempty" structs:"self,omitempty"`
-	IconURL string `json:"iconUrl,omitempty" structs:"iconUrl,omitempty"`
-	Name    string `json:"name,omitempty" structs:"name,omitempty"`
-	ID      string `json:"id,omitempty" structs:"id,omitempty"`
+	Self        string `json:"self,omitempty" structs:"self,omitempty"`
+	StatusColor string `json:"statusColor,omitempty" structs:"statusColor,omitempty"`
+	Description string `json:"description,omitempty" structs:"description,omitempty"`
+	IconURL     string `json:"iconUrl,omitempty" structs:"iconUrl,omitempty"`
+	Name        string `json:"name,omitempty" structs:"name,omitempty"`
+	ID          string `json:"id,omitempty" structs:"id,omitempty"`
 }
 
 // PriorityScheme represents a priority scheme
